@@ -11,5 +11,6 @@ if (!$dbAccess->dbConnect()) {
     die (Language::errorDbConnect);
 }
 
+
 ?>
 
