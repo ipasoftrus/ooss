@@ -3,11 +3,12 @@
  **     Online Order Status Script          **
  **     Configuration module                **
  **                                         */
-class OOSSConfig {
+final class OOSSConfig {
     const dbHost = 'localhost';
     const dbName = 'ooss';
     const dbUser = 'ipasoft';
     const dbPass = '12345678';
+    const dbPrfx = 'ooss_';
 }
 ?>
 

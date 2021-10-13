@@ -4,12 +4,21 @@
  **     Data access module                  **
  **                                         */
 
-require_once '../config.php';
+require_once 'config.php';
 
-class DbAccess {
+final class DbAccess {
+    private $connection;
+    
     // Подключается к БД, возвращает true в случае успеха
-    public static function dbConnect() {
-        
+    public final function dbConnect() {
+        $this->connection = mysqli_connect(
+                OOSSConfig::dbHost,
+                OOSSConfig::dbUser,
+                OOSSConfig::dbPass,
+                OOSSConfig::dbName);
+        if (!$this->connection) { // Если не подключились
+            return false;
+        }
         return true;
     }
 }
