@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Libertinus Serif;
+    src: url(LibertinusSerif-Regular.otf); 
+}
+
+h1 {
+    font-family: Libertinus Serif, 'Comic Sans MS', cursive;
+}

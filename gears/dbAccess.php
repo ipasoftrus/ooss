@@ -4,14 +4,12 @@
  **     Data access module                  **
  **                                         */
 
-require_once 'config.php';
-
 final class DbAccess {
     private $connection;
     
     // Подключается к БД, возвращает true в случае успеха
     public final function dbConnect() {
-        $this->connection = mysqli_connect(
+        $this->connection = new mysqli(
                 OOSSConfig::dbHost,
                 OOSSConfig::dbUser,
                 OOSSConfig::dbPass,
@@ -21,5 +19,16 @@ final class DbAccess {
         }
         return true;
     }
+    
+    // Получить настройку из таблицы настроек
+    public function getSettingByName($paramName) {
+        $sql = "SELECT `value` FROM `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."settings` WHERE `parameter`='$paramName';";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows) { // Если результат вернулся
+            $row = $result->fetch_row();
+            return $row[0];
+        }
+        return null;
+    }
 }
-?>
+

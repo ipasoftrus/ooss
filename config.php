@@ -10,5 +10,5 @@ final class OOSSConfig {
     const dbPass = '12345678';
     const dbPrfx = 'ooss_';
 }
-?>
+
 

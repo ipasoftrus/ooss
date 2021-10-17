@@ -82,5 +82,5 @@ final class InstallSQL {
             . "PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci "
             . "COMMENT = 'Таблица заявок';";
 }
-?>
+
 
