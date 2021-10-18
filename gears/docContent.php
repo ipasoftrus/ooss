@@ -13,4 +13,9 @@ final class DocContent {
     public $menu;       // Строка меню
     public $sidebar;    // Боковое меню
     public $middle;     // Центральный контент
+    
+    // Конструктор класса контента документа
+    function __construct() {
+        $this->sidebar = "Test sidebar";
+    }
 }

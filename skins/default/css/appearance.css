@@ -3,6 +3,17 @@
     src: url(LibertinusSerif-Regular.otf); 
 }
 
-h1 {
-    font-family: Libertinus Serif, 'Comic Sans MS', cursive;
+* {
+    font-family: Libertinus Serif, 'Arial', cursive;
+}
+
+.header {
+    background-color: cornflowerblue;
+    text-align: center;
+}
+
+.footer {
+    background-color: #660000;
+    text-align: center;
+    color: white;
 }
