@@ -11,7 +11,6 @@ final class InstallSQL {
             . "ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'Таблица настроек';";
     public $crUsers = "CREATE TABLE `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."users` "
             . "( `id` INT NOT NULL AUTO_INCREMENT COMMENT 'Уникальный идентификатор' , "
-            . "`phones` TEXT NOT NULL COMMENT 'Номера телефонов' , "
             . "`pwd` TEXT NOT NULL COMMENT 'Пароль' , "
             . "`name` TEXT NOT NULL COMMENT 'Полное имя' , "
             . "`role` INT NOT NULL COMMENT 'Должность/права доступа' , "
