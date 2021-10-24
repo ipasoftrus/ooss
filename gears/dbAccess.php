@@ -34,13 +34,32 @@ final class DbAccess {
     // Найти ID пользователя по email или номеру телефона
     public function findUser($login) {
         // Опросить таблицу пользователей, по емэйлу
-        // Опросить таблицу телефонных номеров
+        $sql = "SELECT `id` FROM `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."users` WHERE `email` = '$login';";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows) { // Если email нашелся
+            $row = $result->fetch_row();
+            return $row[0]; // Вернуть ID юзера
+        }
+        else { // Не нашли по email, ищем по номеру телефона
+            $sql = "SELECT `user` FROM `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."phones` WHERE `number` = '$login';";
+            $result = $this->connection->query($sql);
+            if ($result->num_rows) { // Если телефон нашелся
+                $row = $result->fetch_row();
+                return $row[0]; // Вернуть ID юзера
+            }
+        }
         return 0; // Пользователь не найден
     }
     
     // Получить всю информацию о пользователе по его ID 
     public function getUserInfo($id) {
-        // Сформировать массив со всеми полями пользователя
+        // Забрать все поля с искомым id
+        $sql = "SELECT * FROM `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."users` WHERE `id`='$id';";
+        $result = $this->connection->query($sql);
+        if ($result->num_rows) { // Проверка наличия результата
+            $row = $result->fetch_assoc(); // Получить ассоциативный массив
+            return $row; // Вернуть всю информацию о юзере
+        }
         return null;
     }
 }

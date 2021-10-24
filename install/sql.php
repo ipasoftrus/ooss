@@ -80,6 +80,10 @@ final class InstallSQL {
             . "`issued` DATETIME NULL COMMENT 'Выдали когда' , "
             . "PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci "
             . "COMMENT = 'Таблица заявок';";
+    public $crPhones = "CREATE TABLE `".OOSSConfig::dbName."`.`".OOSSConfig::dbPrfx."phones` "
+            . "( `number` TEXT NOT NULL COMMENT 'Номер телефона' , "
+            . "`user` INT UNSIGNED NOT NULL COMMENT 'Идентификатор пользователя' , "
+            . "UNIQUE `phonenum` (`number`)) ENGINE = InnoDB;";
 }
 
 

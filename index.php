@@ -27,6 +27,8 @@ else {
     $param_lang = $dbAccess->getSettingByName("lang");
     $param_skin = $dbAccess->getSettingByName("skin");
     $param_name = $dbAccess->getSettingByName("scname");
+    $param_zone = $dbAccess->getSettingByName("timezone");
+    
     // Подключение языкового файла
     if (file_exists('./local/'.$param_lang.'.php')) {
         require_once './local/'.$param_lang.'.php'; 
@@ -34,16 +36,19 @@ else {
     else {
         require_once './local/default.php'; 
     }
+    // Старт сессии
+    require_once './gears/session.php';
+    $session = new OOSSSession();
+    // Установка временной зоны (часового пояса)
+    date_default_timezone_set($param_zone);
     // Подключение класса контента
     require_once './gears/docContent.php';
     // Создание объекта и запуск конструктора
-    $docContent = new DocContent;
+    $docContent = new DocContent();
     // Получение пути к файлам темы
     $docContent->skinPath = "./skins/".$param_skin."/";
     // Имя сервисного центра
     $docContent->header = $param_name;
-    // Старт сессии
-    require_once './gears/session.php';
     // Подключение HTML темы
     require_once $docContent->skinPath.'main.php'; 
 }
