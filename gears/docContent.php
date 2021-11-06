@@ -102,21 +102,26 @@ final class DocContent {
     // Получить меню (доступные действия)
     private function getMenu() {
         global $session;
-        $result = "<div id=\"menu\">\r\n"
+        $result = "\r\n<div id=\"cssmenu\">\r\n"
                 . "<ul>\r\n"
-                . "<li><a href=\"./index.php?p=profile\">".Language::menuProfile."</a></li>\r\n"
-                . "<li id=\"menu_item_chats\"><a href=\"./index.php?p=chats\">".Language::menuChats."<b> (+6)</b></a></li>\r\n";
+                . "<li class=\"active\"><a href=\"./index.php?p=profile\"><span>".Language::menuProfile."</span></a></li>\r\n";
         if ($session->getRole() == 1) {
+            $result .= "<li><a href=\"./index.php?p=status\"><span>".Language::menuMyStatuses."</span></a></li>\r\n";
+        }
+        $result .= "<li class=\"has-sub\"><a href=\"#\"><span>".Language::menuChats."</span></a>\r\n";
+        if ($session->getRole() >= 1) {
             $result .= $this->getSubmenuMessages();
-            $result .= "<li id=\"menu_item_orders\"><a href=\"./index.php?p=status\">".Language::menuMyStatuses."</a></li>\r\n";
+            $result .= "</li>";
         }
         if ($session->getRole() > 1) { // Менеджерские права
-            $result .= "<li><a href=\"./index.php?p=orders\">".Language::menuManageOrders."</a></li>\r\n";
+            $result .= "<li class=\"has-sub\"><a href=\"#\"><span>".Language::menuManageOrders."</span></a>\r\n";
             $result .= $this->getSubmenuOrders();
+            $result .= "</li>";
         }
         if ($session->getRole() == 4) { // Админские права
-            $result .= "<li><a href=\"./index.php?p=admin\">".Language::menuSettings."</a></li>\r\n";
+            $result .= "<li class=\"has-sub\"><a href=\"#\"><span>".Language::menuSettings."</span></a>\r\n";
             $result .= $this->getSubMenuSettings();
+            $result .= "</li>";
         }
         $result .="</ul>\r\n"
                 . "</div>\r\n";
@@ -125,11 +130,11 @@ final class DocContent {
     
     // Получить подменю для пункта меню сообщения
     private function getSubmenuMessages() {
-        $result .="<ul>\r\n"
-                . "<li><a href=\"./index.php?p=chats\">".Language::menuChatsAll."</a></li>\r\n"
-                . "<li><a href=\"./index.php?p=chats&write=manager\">".Language::menuToMyManager."</a></li>\r\n"
-                . "<li><a href=\"./index.php?p=chats&write=master\">".Language::menuToMyMaster."</a></li>\r\n"
-                . "<li><a href=\"./index.php?p=chats&write=director\">".Language::menuToMyDirector."</a></li>\r\n"
+        $result ="<ul>\r\n"
+                . "<li><a href=\"./index.php?p=chats\"><span>".Language::menuChatsAll."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=chats&write=manager\"><span>".Language::menuToMyManager."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=chats&write=master\"><span>".Language::menuToMyMaster."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=chats&write=director\"><span>".Language::menuToMyDirector."</span></a></li>\r\n"
                 . "</ul>\r\n";
         return $result;
     }
@@ -137,7 +142,7 @@ final class DocContent {
     // Получить подменю для пункта меню Управление заявками
     private function getSubmenuOrders() {
         $result ="<ul>\r\n"
-                . "<li><a href=\"./index.php?p=orders\">".Language::menuManageOrdersAll."</a></li>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageOrdersAll."</span></a></li>\r\n"
                 . "</ul>\r\n";
         return $result;
     }
@@ -146,8 +151,8 @@ final class DocContent {
     private function getSubMenuSettings() {
         return
         "<ul>\r\n"
-      . "<li><a href=\"./index.php?p=admin&mode=general\">".Language::menuSettingsGeneral."</a></li>\r\n"
-      . "<li><a href=\"./index.php?p=admin&mode=users\">".Language::menuSettingsUser."</a></li>\r\n"
+      . "<li><a href=\"./index.php?p=admin&mode=general\"><span>".Language::menuSettingsGeneral."</span></a></li>\r\n"
+      . "<li><a href=\"./index.php?p=admin&mode=users\"><span>".Language::menuSettingsUser."</span></a></li>\r\n"
       . "</ul>\r\n";
     }
 }
