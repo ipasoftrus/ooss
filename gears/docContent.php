@@ -30,8 +30,11 @@ final class DocContent {
     // Формирует заголовок документа
     private function makeDocTitle() {
         switch ($this->pageid) {
-            case 'adm': // Администрирование
+            case 'admin': // Администрирование
                 $this->title = Language::titleAdmin;
+                break;
+            case 'chats': // Переписки
+                $this->title = Language::titleChats;
                 break;
             default: // Страница по-умолчанию
                 $this->title = Language::titleMain;
@@ -67,7 +70,7 @@ final class DocContent {
     // Получить приветствие
     private function getGreeting() {
         global $session;
-        $result = "";
+        $result = "<div id=\"greeting\">\r\n";
         $nowhours = date("H");
         if (($nowhours >= 0)&&($nowhours <= 5)) {
             $result .= Language::signGoodNight;
@@ -86,6 +89,7 @@ final class DocContent {
         if ($session->getRole() > 1) {
             $result .= Language::signRole.": ".Language::roleDescriptions[$session->getRole()]."\r\n";
         }
+        $result .= "</div>\r\n";
         return $result;
     }
     
@@ -104,7 +108,7 @@ final class DocContent {
         global $session;
         $result = "\r\n<div id=\"cssmenu\">\r\n"
                 . "<ul>\r\n"
-                . "<li class=\"active\"><a href=\"./index.php?p=profile\"><span>".Language::menuProfile."</span></a></li>\r\n";
+                . "<li><a href=\"./index.php?p=profile\"><span>".Language::menuProfile."</span></a></li>\r\n";
         if ($session->getRole() == 1) {
             $result .= "<li><a href=\"./index.php?p=status\"><span>".Language::menuMyStatuses."</span></a></li>\r\n";
         }
@@ -116,6 +120,9 @@ final class DocContent {
         if ($session->getRole() > 1) { // Менеджерские права
             $result .= "<li class=\"has-sub\"><a href=\"#\"><span>".Language::menuManageOrders."</span></a>\r\n";
             $result .= $this->getSubmenuOrders();
+            $result .= "</li>";
+            $result .= "<li class=\"has-sub\"><a href=\"#\"><span>".Language::menuManageZIP."</span></a>\r\n";
+            $result .= $this->getSubmenuZIPs();
             $result .= "</li>";
         }
         if ($session->getRole() == 4) { // Админские права
@@ -131,7 +138,7 @@ final class DocContent {
     // Получить подменю для пункта меню сообщения
     private function getSubmenuMessages() {
         $result ="<ul>\r\n"
-                . "<li><a href=\"./index.php?p=chats\"><span>".Language::menuChatsAll."</span></a></li>\r\n"
+                . "<li class=\"active\"><a href=\"./index.php?p=chats\"><span>".Language::menuChatsAll."</span></a></li>\r\n"
                 . "<li><a href=\"./index.php?p=chats&write=manager\"><span>".Language::menuToMyManager."</span></a></li>\r\n"
                 . "<li><a href=\"./index.php?p=chats&write=master\"><span>".Language::menuToMyMaster."</span></a></li>\r\n"
                 . "<li><a href=\"./index.php?p=chats&write=director\"><span>".Language::menuToMyDirector."</span></a></li>\r\n"
@@ -143,6 +150,18 @@ final class DocContent {
     private function getSubmenuOrders() {
         $result ="<ul>\r\n"
                 . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageOrdersAll."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageOrdersAdd."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageOrdersHistory."</span></a></li>\r\n"
+                . "</ul>\r\n";
+        return $result;
+    }
+    
+    // Получить подменю управления запчастями
+    private function getSubmenuZIPs() {
+        $result ="<ul>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageZIPsAll."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageZIPsAdd."</span></a></li>\r\n"
+                . "<li><a href=\"./index.php?p=orders\"><span>".Language::menuManageZIPsHistory."</span></a></li>\r\n"
                 . "</ul>\r\n";
         return $result;
     }

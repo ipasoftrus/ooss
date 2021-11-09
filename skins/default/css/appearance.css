@@ -8,7 +8,7 @@
 }
 
 body {
-    background-image: url(../images/black-metallic-pattern.jpg);
+    background-image: url(../images/seamless-2033661_640.jpg);
     background-repeat: repeat;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 #header {
-    background-color: cornflowerblue;
+    background-color: rgb(54,170,231);
     text-align: center;
     font-size: 60px;
     width: 100%;
@@ -27,7 +27,7 @@ body {
 }
 
 #footer {
-    background-color: #660000;
+    background-color: #101818;
     text-align: center;
     color: white;
     width: 100%;
@@ -35,14 +35,14 @@ body {
 }
 
 #sidebar {
-    background-color: #ff99ff;
+    background-color: #aaa;
     float: left;
     width: 20%;
     min-height: 700px;
 }
 
 #content {
-    background-color: #ffffcc;
+    background-color: white;
     float: right;
     width: 80%;
     min-height: 700px;
@@ -50,6 +50,25 @@ body {
 
 #clear {
     clear: both;
+}
+
+/* Поле авторизации */
+#signin {
+    padding: 10px;
+}
+
+#signout {
+    padding: 10px;
+}
+
+#greeting {
+    padding: 10px;
+    margin: auto;
+}
+
+#avatar {
+    width: 128px;
+    height: 128px;
 }
 
 /* Вертикальное меню */

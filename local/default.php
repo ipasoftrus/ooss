@@ -14,6 +14,7 @@ final class Language {
     // Page titles
     const titleMain = "Главная";
     const titleAdmin = "Настройки сайта";
+    const titleChats = "Переписки";
     // Signs
     const signLogin = "Логин";
     const signPassword = "Пароль";
@@ -31,8 +32,17 @@ final class Language {
     const menuToMyManager = "Написать менеджеру";
     const menuToMyMaster = "Написать мастеру";
     const menuToMyDirector = "Написать директору";
-    const menuManageOrders = "Управление заявками";
-    const menuManageOrdersAll = "Открыть заявки";
+    
+    const menuManageOrders = "Услуги";
+    const menuManageOrdersAll = "Смотреть перечень";
+    const menuManageOrdersAdd = "Новая заявка";
+    const menuManageOrdersHistory = "История";
+    
+    const menuManageZIP = "Товары";
+    const menuManageZIPsAll = "Смотреть склад";
+    const menuManageZIPsAdd = "Поступление товаров";
+    const menuManageZIPsHistory = "История";
+    
     const menuSettings = "Настройки";
     const menuSettingsGeneral = "Общие";
     const menuSettingsUser = "Пользователи";
